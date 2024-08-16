@@ -1,8 +1,6 @@
 package io.github.kraverekpl.TaskMate.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Task {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @NotBlank(message = "Task name cannot be empty")
     private String name;
