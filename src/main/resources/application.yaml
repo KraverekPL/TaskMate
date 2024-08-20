@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: TaskMate
+  profiles:
+    active: prod
+
+task:
+  template:
+    allowMultipleTasks: false
+
+server:
+  port: 8081
