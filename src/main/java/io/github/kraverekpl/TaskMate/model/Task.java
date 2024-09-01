@@ -7,20 +7,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotBlank(message = "Task name cannot be empty")
     private String name;
     @NotBlank(message = "Task description cannot be empty")
     private String description;
     private boolean done;
+    private LocalDateTime deadline;
 }
