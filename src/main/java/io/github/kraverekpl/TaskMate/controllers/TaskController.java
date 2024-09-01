@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 
-@RestController  
+@RestController
 public class TaskController {
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskRepository taskRepository;
@@ -52,23 +52,22 @@ public class TaskController {
         return ResponseEntity.ok(taskRepository.findAll(page).stream().toList());
     }
 
+    @Transactional
     @PutMapping("/tasks/{id}")
     ResponseEntity<?> updateTask(@PathVariable Integer id, @RequestBody @Valid Task toUpdate) {
         logger.warn("Update task");
-        if (taskRepository.existsById(id)) {
-            toUpdate.setId(id);
-            Task task = taskRepository.save(toUpdate);
-            return ResponseEntity.ok(task);
-        } else {
+        if (!taskRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
+        taskRepository.findById(id).ifPresent(task -> task.updateFrom(toUpdate));
+        return ResponseEntity.noContent().build();
     }
 
     @Transactional
-    @PatchMapping("tasks/{id}")
-    ResponseEntity<Task> toogleTask(@PathVariable Integer id) {
+    @PatchMapping("/tasks/{id}")
+    ResponseEntity<Task> toggleTask(@PathVariable Integer id) {
         logger.warn("Toggle task");
-        if(taskRepository.existsById(id)) {
+        if (taskRepository.existsById(id)) {
             Task task = taskRepository.findById(id).orElse(null);
             task.setDone(!task.isDone());
             return ResponseEntity.ok(task);
