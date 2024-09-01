@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: TaskMate
+  profiles:
+    active: prod
+  flyway:
+    baseline-on-migrate: true
+
+
+task:
+  template:
+    allowMultipleTasks: false
+
+server:
+  port: 8081
