@@ -2,6 +2,7 @@ package io.github.kraverekpl.TaskMate.controllers;
 
 import io.github.kraverekpl.TaskMate.model.Task;
 import io.github.kraverekpl.TaskMate.model.TaskRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +58,19 @@ public class TaskController {
         if (taskRepository.existsById(id)) {
             toUpdate.setId(id);
             Task task = taskRepository.save(toUpdate);
+            return ResponseEntity.ok(task);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Transactional
+    @PatchMapping("tasks/{id}")
+    ResponseEntity<Task> toogleTask(@PathVariable Integer id) {
+        logger.warn("Toggle task");
+        if(taskRepository.existsById(id)) {
+            Task task = taskRepository.findById(id).orElse(null);
+            task.setDone(!task.isDone());
             return ResponseEntity.ok(task);
         } else {
             return ResponseEntity.notFound().build();
