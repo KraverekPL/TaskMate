@@ -9,7 +9,8 @@ import lombok.Setter;
 
 import java.util.Set;
 
-@Entity(name = "task_group")
+@Entity
+@Table(name = "task_group")
 @Getter
 @Setter
 @AllArgsConstructor
