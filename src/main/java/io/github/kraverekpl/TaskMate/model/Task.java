@@ -28,6 +28,9 @@ public class Task {
     private LocalDateTime deadline;
     @Embedded
     private Audit audit = new Audit();
+    @ManyToOne
+    @JoinColumn(name = "task_group_id")
+    private TaskGroup taskGroup;
 
 
     public void updateFrom(final Task source) {
@@ -35,5 +38,6 @@ public class Task {
         description = source.description;
         done = source.done;
         deadline = source.deadline;
+        taskGroup = source.taskGroup;
     }
 }

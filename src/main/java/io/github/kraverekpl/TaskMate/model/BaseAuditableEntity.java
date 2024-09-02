@@ -1,7 +1,6 @@
 package io.github.kraverekpl.TaskMate.model;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
