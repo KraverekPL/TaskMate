@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Task extends BaseAuditableEntity{
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,6 +26,8 @@ public class Task extends BaseAuditableEntity{
     private String description;
     private boolean done;
     private LocalDateTime deadline;
+    @Embedded
+    private Audit audit = new Audit();
 
 
     public void updateFrom(final Task source) {
