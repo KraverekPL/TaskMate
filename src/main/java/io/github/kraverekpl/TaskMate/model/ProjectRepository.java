@@ -8,12 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TaskGroupRepository extends JpaRepository<TaskGroup, Integer> {
-    Optional<TaskGroup> findById(Integer id);
-    @Query("from TaskGroup g join fetch g.tasks")
-    List<TaskGroup> findAll();
-
-    boolean existsByDoneIsFalseAndProjectId(Integer projectId);
+public interface ProjectRepository extends JpaRepository<Project, Integer> {
+    Optional<Project> findById(Integer id);
+    @Query("from Project p join fetch p.projectSteps")
+    List<Project> findAll();
 
     TaskGroup save(TaskGroup entity);
+
 }
