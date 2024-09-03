@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-
 @Entity
 @Table(name = "task")
 @Getter
@@ -31,6 +30,11 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "task_group_id")
     private TaskGroup taskGroup;
+
+    public Task(String description, LocalDateTime deadline) {
+        this.description = description;
+        this.deadline = deadline;
+    }
 
 
     public void updateFrom(final Task source) {
