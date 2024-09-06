@@ -40,13 +40,14 @@ public class ProjectService {
                     targetGroup.setTasks(
                             project.getProjectSteps().stream()
                                     .map(projectStep -> new Task(
-                                                projectStep.getDescription(),
-                                                deadline.plusDays(projectStep.getDaysToDeadline()))
+                                            projectStep.getDescription(),
+                                            deadline.plusDays(projectStep.getDaysToDeadline()))
                                     )
                                     .collect(Collectors.toSet())
                     );
-                    return targetGroup;
-                }).orElseThrow(()-> new IllegalArgumentException("Project not found"));
+                    targetGroup.setProject(project);
+                    return taskGroupRepository.save(targetGroup);
+                }).orElseThrow(() -> new IllegalArgumentException("Project not found"));
         return new GroupReadModel(result);
     }
 }
