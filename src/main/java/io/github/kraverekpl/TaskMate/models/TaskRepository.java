@@ -1,4 +1,4 @@
-package io.github.kraverekpl.TaskMate.model;
+package io.github.kraverekpl.TaskMate.models;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

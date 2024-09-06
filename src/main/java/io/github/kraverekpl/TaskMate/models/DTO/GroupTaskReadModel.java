@@ -1,6 +1,6 @@
-package io.github.kraverekpl.TaskMate.model.DTO;
+package io.github.kraverekpl.TaskMate.models.DTO;
 
-import io.github.kraverekpl.TaskMate.model.Task;
+import io.github.kraverekpl.TaskMate.models.Task;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package io.github.kraverekpl.TaskMate.model;
+package io.github.kraverekpl.TaskMate.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

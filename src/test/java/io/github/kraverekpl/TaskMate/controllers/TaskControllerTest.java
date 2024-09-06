@@ -1,7 +1,7 @@
 package io.github.kraverekpl.TaskMate.controllers;
 
-import io.github.kraverekpl.TaskMate.model.Task;
-import io.github.kraverekpl.TaskMate.model.TaskRepository;
+import io.github.kraverekpl.TaskMate.models.Task;
+import io.github.kraverekpl.TaskMate.models.TaskRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

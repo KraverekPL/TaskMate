@@ -1,4 +1,4 @@
-package io.github.kraverekpl.TaskMate.model;
+package io.github.kraverekpl.TaskMate.models;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.PrePersist;
