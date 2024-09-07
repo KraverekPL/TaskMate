@@ -1,17 +1,14 @@
 package io.github.kraverekpl.TaskMate.services;
 
-import io.github.kraverekpl.TaskMate.TaskConfigurationProperties;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupReadModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupWriteModel;
 import io.github.kraverekpl.TaskMate.models.TaskGroup;
 import io.github.kraverekpl.TaskMate.models.TaskGroupRepository;
 import io.github.kraverekpl.TaskMate.models.TaskRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class TaskGroupService {
     private TaskGroupRepository repository;
     private TaskRepository taskRepository;
