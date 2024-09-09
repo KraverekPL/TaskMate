@@ -15,6 +15,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/tasks")
 public class TaskController {
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskRepository taskRepository;
@@ -23,7 +24,7 @@ public class TaskController {
         this.taskRepository = taskRepository;
     }
 
-    @PostMapping("/tasks")
+    @PostMapping
     ResponseEntity<Task> createTask(@RequestBody @Valid Task toCreate) {
         logger.warn("Create task");
         Task result = taskRepository.save(toCreate);
@@ -32,7 +33,7 @@ public class TaskController {
     }
 
 
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<Task> readTask(@PathVariable Integer id) {
         return taskRepository
                 .findById(id)
@@ -40,20 +41,26 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping(path = "/tasks", params = {"!page", "!size", "!sort"})
+    @GetMapping(params = {"!page", "!size", "!sort"})
     ResponseEntity<?> readAllTasks() {
         logger.warn("Read all tasks");
         return ResponseEntity.ok(taskRepository.findAll());
     }
 
-    @GetMapping("/tasks")
+    @GetMapping("/search/done")
+    ResponseEntity<List<Task>> readDoneTasks(@RequestParam(defaultValue = "true" ) boolean state) {
+        logger.warn("Read all done tasks");
+        return ResponseEntity.ok(taskRepository.findTasksByDone(state));
+    }
+
+    @GetMapping
     ResponseEntity<List<Task>> readAllTasks(Pageable page) {
         logger.warn("Custom pageable read all tasks");
         return ResponseEntity.ok(taskRepository.findAll(page).stream().toList());
     }
 
     @Transactional
-    @PutMapping("/tasks/{id}")
+    @PutMapping("/{id}")
     ResponseEntity<?> updateTask(@PathVariable Integer id, @RequestBody @Valid Task toUpdate) {
         logger.warn("Update task");
         if (!taskRepository.existsById(id)) {
@@ -64,7 +71,7 @@ public class TaskController {
     }
 
     @Transactional
-    @PatchMapping("/tasks/{id}")
+    @PatchMapping("/{id}")
     ResponseEntity<Task> toggleTask(@PathVariable Integer id) {
         logger.warn("Toggle task");
         if (taskRepository.existsById(id)) {
@@ -76,14 +83,14 @@ public class TaskController {
         }
     }
 
-    @DeleteMapping("/tasks")
+    @DeleteMapping
     ResponseEntity<List<Task>> deleteAllTasks() {
         logger.warn("Delete all tasks");
         taskRepository.deleteAll();
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/tasks/{id}")
+    @DeleteMapping("/{id}")
     ResponseEntity<List<Task>> deleteTask(@PathVariable("id") Integer id) {
         logger.warn("Delete task number {id}", id);
         taskRepository.deleteById(id);

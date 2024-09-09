@@ -3,9 +3,11 @@ package io.github.kraverekpl.TaskMate.controllers;
 import io.github.kraverekpl.TaskMate.TaskConfigurationProperties;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(value = "/info")
+@RestController
+@RequestMapping(value = "/info")
 public class InfoController {
 
     private DataSourceProperties dataSourceProperties;
