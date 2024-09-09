@@ -14,8 +14,9 @@ public class ServiceConfiguration {
     public ProjectService projectService(
             final ProjectRepository repository,
             final TaskGroupRepository taskGroupRepository,
+            final TaskGroupService taskGroupService,
             final TaskConfigurationProperties config) {
-        return new ProjectService(repository, taskGroupRepository, config);
+        return new ProjectService(repository, taskGroupRepository, taskGroupService, config);
     }
 
     @Bean

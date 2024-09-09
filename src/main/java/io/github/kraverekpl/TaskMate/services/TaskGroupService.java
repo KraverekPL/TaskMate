@@ -5,6 +5,8 @@ import io.github.kraverekpl.TaskMate.models.DTO.GroupWriteModel;
 import io.github.kraverekpl.TaskMate.models.TaskGroup;
 import io.github.kraverekpl.TaskMate.models.TaskGroupRepository;
 import io.github.kraverekpl.TaskMate.models.TaskRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,5 +39,16 @@ public class TaskGroupService {
         result.setDone(!result.isDone());
         repository.save(result);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    ResponseEntity<?> handleIllegalArgument(IllegalArgumentException e) {
+        return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    ResponseEntity<?> handleIllegalState(IllegalStateException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
 
 }

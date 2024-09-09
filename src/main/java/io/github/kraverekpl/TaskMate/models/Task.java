@@ -31,10 +31,17 @@ public class Task {
     @JoinColumn(name = "task_group_id")
     private TaskGroup taskGroup;
 
-    public Task(String description, LocalDateTime deadline, final String name) {
+    public Task(String description, LocalDateTime deadline, String name) {
+        this(description, deadline, name, null);
+    }
+
+    public Task(String description, LocalDateTime deadline, String name, TaskGroup taskGroup) {
         this.description = description;
         this.deadline = deadline;
         this.name = name;
+        if (taskGroup != null) {
+            this.taskGroup = taskGroup;
+        }
     }
 
 

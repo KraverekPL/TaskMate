@@ -1,6 +1,7 @@
 package io.github.kraverekpl.TaskMate.models.DTO;
 
 import io.github.kraverekpl.TaskMate.models.Task;
+import io.github.kraverekpl.TaskMate.models.TaskGroup;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +14,8 @@ public class GroupTaskWriteModel {
     private LocalDateTime deadline;
     private String name;
 
-    public Task toTask() {
-        return new Task(description, deadline, name);
+    public Task toTask(final TaskGroup group) {
+        return new Task(description, deadline, name, group);
     }
 
 }
