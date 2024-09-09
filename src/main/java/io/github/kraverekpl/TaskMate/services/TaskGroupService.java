@@ -2,6 +2,7 @@ package io.github.kraverekpl.TaskMate.services;
 
 import io.github.kraverekpl.TaskMate.models.DTO.GroupReadModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupWriteModel;
+import io.github.kraverekpl.TaskMate.models.Project;
 import io.github.kraverekpl.TaskMate.models.TaskGroup;
 import io.github.kraverekpl.TaskMate.models.TaskGroupRepository;
 import io.github.kraverekpl.TaskMate.models.TaskRepository;
@@ -21,7 +22,10 @@ public class TaskGroupService {
     }
 
     public GroupReadModel createGroup(GroupWriteModel source) {
-        TaskGroup result = repository.save(source.toTaskGroup());
+        return createGroup(source, null);
+    }
+    GroupReadModel createGroup(final GroupWriteModel source, final Project project) {
+        TaskGroup result = repository.save(source.toTaskGroup(project));
         return new GroupReadModel(result);
     }
 
@@ -34,7 +38,6 @@ public class TaskGroupService {
     public void toggleGroup(int groupId) {
         if(taskRepository.existsByDoneIsFalseAndTaskGroupId(groupId))
             throw new IllegalStateException("Group has undone tasks");
-
         TaskGroup result = repository.findById(groupId).orElseThrow(() -> new IllegalArgumentException("Group not found"));
         result.setDone(!result.isDone());
         repository.save(result);
@@ -49,6 +52,7 @@ public class TaskGroupService {
     ResponseEntity<?> handleIllegalState(IllegalStateException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
+
 
 
 }

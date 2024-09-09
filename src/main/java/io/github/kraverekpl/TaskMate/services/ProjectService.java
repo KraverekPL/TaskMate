@@ -53,7 +53,7 @@ public class ProjectService {
                                     )
                                     .collect(Collectors.toSet())
                     );
-                    return taskGroupService.createGroup(targetGroup);
+                    return taskGroupService.createGroup(targetGroup, project);
                 }).orElseThrow(() -> new IllegalArgumentException("Project not found"));
         return result;
     }
