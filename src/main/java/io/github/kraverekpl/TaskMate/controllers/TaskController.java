@@ -2,6 +2,7 @@ package io.github.kraverekpl.TaskMate.controllers;
 
 import io.github.kraverekpl.TaskMate.models.Task;
 import io.github.kraverekpl.TaskMate.models.TaskRepository;
+import io.github.kraverekpl.TaskMate.services.TaskService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 
 @RestController
@@ -20,7 +22,10 @@ public class TaskController {
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskRepository taskRepository;
 
-    public TaskController(TaskRepository taskRepository) {
+    private TaskService taskService;
+
+    public TaskController(TaskRepository taskRepository, TaskService taskService) {
+        this.taskService = taskService;
         this.taskRepository = taskRepository;
     }
 
@@ -42,9 +47,9 @@ public class TaskController {
     }
 
     @GetMapping(params = {"!page", "!size", "!sort"})
-    ResponseEntity<?> readAllTasks() {
+    CompletableFuture<ResponseEntity<List<Task>>> readAllTasks() {
         logger.warn("Read all tasks");
-        return ResponseEntity.ok(taskRepository.findAll());
+        return taskService.findAllTasksAsync().thenApply(tasks -> ResponseEntity.ok(tasks));
     }
 
     @GetMapping("/search/done")

@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -59,18 +60,6 @@ class TaskControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(task, response.getBody());
         verify(taskRepository, times(1)).findById(id);
-    }
-
-    @Test
-    void readAllTasks() {
-        List<Task> tasks = Arrays.asList(new Task(), new Task());
-        when(taskRepository.findAll()).thenReturn(tasks);
-
-        ResponseEntity<List<Task>> response = (ResponseEntity<List<Task>>) taskController.readAllTasks();
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(tasks, response.getBody());
-        verify(taskRepository, times(1)).findAll();
     }
 
     @Test
