@@ -26,6 +26,4 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     void deleteAll();
 
     boolean existsByDoneIsFalseAndTaskGroupId(Integer groupId);
-
-
 }
