@@ -11,9 +11,10 @@ import java.time.LocalDateTime;
 public class GroupTaskWriteModel {
     private String description;
     private LocalDateTime deadline;
+    private String name;
 
     public Task toTask() {
-        return new Task(description, deadline);
+        return new Task(description, deadline, name);
     }
 
 }

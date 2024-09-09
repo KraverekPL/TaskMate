@@ -41,7 +41,8 @@ public class ProjectService {
                             project.getProjectSteps().stream()
                                     .map(projectStep -> new Task(
                                             projectStep.getDescription(),
-                                            deadline.plusDays(projectStep.getDaysToDeadline()))
+                                            deadline.plusDays(projectStep.getDaysToDeadline()),
+                                            "")
                                     )
                                     .collect(Collectors.toSet())
                     );

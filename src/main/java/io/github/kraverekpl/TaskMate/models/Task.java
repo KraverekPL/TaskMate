@@ -31,9 +31,10 @@ public class Task {
     @JoinColumn(name = "task_group_id")
     private TaskGroup taskGroup;
 
-    public Task(String description, LocalDateTime deadline) {
+    public Task(String description, LocalDateTime deadline, final String name) {
         this.description = description;
         this.deadline = deadline;
+        this.name = name;
     }
 
 
