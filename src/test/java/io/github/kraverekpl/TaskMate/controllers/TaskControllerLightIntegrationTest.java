@@ -31,7 +31,7 @@ public class TaskControllerLightIntegrationTest {
     @Test
     void httpGetReturnGivenTask() throws Exception {
         //given
-        when(taskRepository.findById(anyInt())).thenReturn(Optional.of(new Task("Task 1", LocalDateTime.now(), "Task name A")));
+        when(taskRepository.findById(anyInt())).thenReturn(Optional.of(new Task("Task 1", LocalDateTime.now())));
         when(taskRepository.existsById(anyInt())).thenReturn(true);
 
         //when+then

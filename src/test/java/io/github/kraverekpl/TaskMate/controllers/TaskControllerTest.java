@@ -38,7 +38,6 @@ class TaskControllerTest {
     @Test
     void createTask() {
         Task task = new Task();
-        task.setName("Test Task");
 
         ResponseEntity<Task> response = taskController.createTask(task);
 

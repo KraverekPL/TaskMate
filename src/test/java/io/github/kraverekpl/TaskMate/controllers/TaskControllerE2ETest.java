@@ -37,8 +37,8 @@ public class TaskControllerE2ETest {
     @Test
     void httpGetAllTasks() {
         //given
-        taskRepository.save(new Task("Task 1", LocalDateTime.now(), "Task name A"));
-        taskRepository.save((new Task("Task 2", LocalDateTime.now().plusDays(1), "Task name B")));
+        taskRepository.save(new Task("Task 1", LocalDateTime.now()));
+        taskRepository.save((new Task("Task 2", LocalDateTime.now().plusDays(1))));
 
         //when
         Task[] result = restTemplate.getForObject("http://localhost:" + port + "/tasks", Task[].class);

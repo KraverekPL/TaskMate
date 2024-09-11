@@ -29,7 +29,7 @@ public class TaskControllerIntegrationTest {
     @Test
     void httpGetReturnGivenTask() throws Exception {
         //given
-        int taskId = taskRepository.save(new Task("Task 1", LocalDateTime.now(), "Task name A")).getId();
+        int taskId = taskRepository.save(new Task("Task 1", LocalDateTime.now())).getId();
 
         //when+then
         mockMvc.perform(get("/tasks/" + taskId))
