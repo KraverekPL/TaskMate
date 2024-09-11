@@ -2,7 +2,7 @@ spring:
   application:
     name: TaskMate
   profiles:
-    active: prod
+    active: local
   flyway:
     baseline-on-migrate: true
 
