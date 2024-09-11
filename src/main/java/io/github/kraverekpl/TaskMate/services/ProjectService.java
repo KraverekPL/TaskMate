@@ -5,6 +5,7 @@ import io.github.kraverekpl.TaskMate.models.*;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupReadModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupTaskWriteModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupWriteModel;
+import io.github.kraverekpl.TaskMate.models.DTO.ProjectWriteModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,8 +31,8 @@ public class ProjectService {
         return repository.findAll();
     }
 
-    public Project save(Project toSave) {
-        return repository.save(toSave);
+    public Project save(ProjectWriteModel toSave) {
+        return repository.save(toSave.toProject());
     }
 
     public GroupReadModel createGroup(LocalDateTime deadline, int projectId) {

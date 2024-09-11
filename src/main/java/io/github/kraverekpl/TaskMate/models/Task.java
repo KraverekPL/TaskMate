@@ -19,8 +19,6 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotBlank(message = "Task name cannot be empty")
-    private String name;
     @NotBlank(message = "Task description cannot be empty")
     private String description;
     private boolean done;
@@ -31,22 +29,19 @@ public class Task {
     @JoinColumn(name = "task_group_id")
     private TaskGroup taskGroup;
 
-    public Task(String description, LocalDateTime deadline, String name) {
-        this(description, deadline, name, null);
+    public Task(String description, LocalDateTime deadline) {
+        this(description, deadline, null);
     }
 
-    public Task(String description, LocalDateTime deadline, String name, TaskGroup taskGroup) {
+    public Task(String description, LocalDateTime deadline, TaskGroup taskGroup) {
         this.description = description;
         this.deadline = deadline;
-        this.name = name;
         if (taskGroup != null) {
             this.taskGroup = taskGroup;
         }
     }
 
-
     public void updateFrom(final Task source) {
-        name = source.name;
         description = source.description;
         done = source.done;
         deadline = source.deadline;

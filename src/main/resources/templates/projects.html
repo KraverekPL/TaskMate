@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://igoradamenko.com/awsm.css/v2/css/awsm.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <title>TaskMate: projects</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+
+        .P\(10\) {
+            padding: 10px;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .fc\(red\) {
+            color: red !important;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1 th:if="${message != null }" th:text="${message}"></h1>
+    <!--/*@thymesVar id="projects" type="List<java.util.List<io.github.kraverekpl.TaskMate.models.Project>>"*/-->
+    <dl th:each="project : ${projects}" class="Bd P(10)">
+        <dt th:text="${project.description}">...</dt>
+        <dd>
+            <ul class="P(0)">
+                <li th:each="step : ${project.projectSteps}"
+                    th:text="|${step.description} (${step.daysToDeadline} dni)|"></li>
+            </ul>
+            <form action="#" method="post" th:action="@{/projects/{projectId} (projectId=${project.id})}">
+                <label>Deadline
+                    <input name="deadline" type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}">
+                </label>
+                <button type="submit">Dodaj taski</button>
+            </form>
+        </dd>
+    </dl>
+    <!--/*@thymesVar id="project" type="io.github.kraverekpl.TaskMate.models.DTO.ProjectWriteModel"*/-->
+    <form action="#" method="post" th:action="@{/projects}" th:object="${project}">
+        <p class="fc(red)" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+        <fieldset>
+            <legend>Nowy projekt</legend>
+            <label>Opis
+                <input type="text" th:field="${project.description}" th:errorclass="'Bdc(red)'"/>
+            </label>
+            <fieldset th:each="projectStep, stepStat : ${project.projectSteps}">
+                <legend th:text="|Krok ${stepStat.index+1}|"></legend>
+                <label>Opis
+                    <input type="text" th:field="*{projectSteps[__${stepStat.index}__].description}"
+                           th:errorclass="'Bdc(red)'"/>
+                </label>
+                <label>Dni do końca projektu
+                    <input type="number" th:field="*{projectSteps[__${stepStat.index}__].daysToDeadline}"
+                           th:errorclass="'Bdc(red)'"/>
+                </label>
+            </fieldset>
+            <button type="submit" name="addStep">Dodaj krok</button>
+        </fieldset>
+        <p>
+            <button type="submit">Zapisz</button>
+            <button type="reset">Wyczysc</button>
+        </p>
+    </form>
+</main>
+</body>
+</html>

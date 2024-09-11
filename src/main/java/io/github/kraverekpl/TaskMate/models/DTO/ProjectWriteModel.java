@@ -5,20 +5,23 @@ import io.github.kraverekpl.TaskMate.models.ProjectSteps;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class ProjectWriteModel {
     @NotBlank(message = "Project name cannot be empty")
     private String description;
     @Valid
-    private List<ProjectSteps> projectSteps;
+    private List<ProjectSteps> projectSteps = new ArrayList<>();
+
+    public ProjectWriteModel() {
+        projectSteps.add(new ProjectSteps());
+    }
 
     public Project toProject() {
         Project project = new Project();

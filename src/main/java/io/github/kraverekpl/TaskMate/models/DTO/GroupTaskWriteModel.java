@@ -15,7 +15,7 @@ public class GroupTaskWriteModel {
     private String name;
 
     public Task toTask(final TaskGroup group) {
-        return new Task(description, deadline, name, group);
+        return new Task(description, deadline, group);
     }
 
 }
