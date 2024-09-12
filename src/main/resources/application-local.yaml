@@ -23,5 +23,11 @@ management:
       exposure:
         include: "*"
 
+keycloak:
+  auth-server-url: http://localhost:9090/auth
+  realm-name: "TaskMate"
+  resource: "todo-spring-client"
+  public-client: true
+
 
 
