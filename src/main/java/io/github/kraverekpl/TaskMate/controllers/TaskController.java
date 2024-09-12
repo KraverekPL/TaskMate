@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,14 @@ import java.util.concurrent.CompletableFuture;
 public class TaskController {
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskRepository taskRepository;
+    private ApplicationEventPublisher applicationEventPublisher;
 
     private TaskService taskService;
 
-    public TaskController(TaskRepository taskRepository, TaskService taskService) {
+    public TaskController(TaskRepository taskRepository, TaskService taskService, ApplicationEventPublisher applicationEventPublisher) {
         this.taskService = taskService;
         this.taskRepository = taskRepository;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @PostMapping
@@ -54,7 +57,7 @@ public class TaskController {
     }
 
     @GetMapping("/search/done")
-    ResponseEntity<List<Task>> readDoneTasks(@RequestParam(defaultValue = "true" ) boolean state) {
+    ResponseEntity<List<Task>> readDoneTasks(@RequestParam(defaultValue = "true") boolean state) {
         logger.warn("Read all done tasks");
         return ResponseEntity.ok(taskRepository.findTasksByDone(state));
     }
@@ -81,9 +84,10 @@ public class TaskController {
     ResponseEntity<Task> toggleTask(@PathVariable Integer id) {
         logger.warn("Toggle task");
         if (taskRepository.existsById(id)) {
-            Task task = taskRepository.findById(id).orElse(null);
-            task.setDone(!task.isDone());
-            return ResponseEntity.ok(task);
+            taskRepository.findById(id)
+                    .map(Task::toggle)
+                    .ifPresent(applicationEventPublisher::publishEvent);
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
         }

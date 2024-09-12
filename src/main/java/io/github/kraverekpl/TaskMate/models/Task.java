@@ -1,5 +1,6 @@
 package io.github.kraverekpl.TaskMate.models;
 
+import io.github.kraverekpl.TaskMate.models.event.TaskEvent;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -46,5 +47,10 @@ public class Task {
         done = source.done;
         deadline = source.deadline;
         taskGroup = source.taskGroup;
+    }
+
+    public TaskEvent toggle() {
+        this.done = !this.done;
+        return TaskEvent.changed(this);
     }
 }
