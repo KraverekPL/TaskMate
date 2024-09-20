@@ -1,4 +1,4 @@
-package io.github.kraverekpl.TaskMate.controllers;
+package io.github.kraverekpl.TaskMate.controllers.advice;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

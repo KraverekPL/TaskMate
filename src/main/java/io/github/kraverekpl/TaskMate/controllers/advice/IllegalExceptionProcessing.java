@@ -1,4 +1,4 @@
-package io.github.kraverekpl.TaskMate.controllers;
+package io.github.kraverekpl.TaskMate.controllers.advice;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,5 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@interface IllegalExceptionProcessing {
+public @interface IllegalExceptionProcessing {
 }

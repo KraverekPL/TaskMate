@@ -1,7 +1,7 @@
 spring:
   datasource:
-    #url: jdbc:h2:mem:testdb
-    url: jdbc:h2:file:./testdb
+    url: jdbc:h2:mem:testdb
+    #url: jdbc:h2:file:./testdb
     driver-class-name: org.h2.Driver
     username: sa
     password:
@@ -25,7 +25,7 @@ management:
 
 keycloak:
   auth-server-url: http://localhost:9090/auth
-  realm-name: "TaskMate"
+  realm: "TaskMate"
   resource: "todo-spring-client"
   public-client: true
 

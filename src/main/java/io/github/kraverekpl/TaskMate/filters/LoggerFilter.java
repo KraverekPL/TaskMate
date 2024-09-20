@@ -1,4 +1,4 @@
-package io.github.kraverekpl.TaskMate.controllers;
+package io.github.kraverekpl.TaskMate.filters;
 
 
 import jakarta.servlet.*;
