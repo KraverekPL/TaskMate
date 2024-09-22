@@ -1,7 +1,7 @@
 package io.github.kraverekpl.TaskMate.controllers;
 
 import io.github.kraverekpl.TaskMate.models.Task;
-import io.github.kraverekpl.TaskMate.models.TaskRepository;
+import io.github.kraverekpl.TaskMate.repositories.TaskRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;

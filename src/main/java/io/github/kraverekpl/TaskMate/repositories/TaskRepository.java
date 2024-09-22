@@ -1,5 +1,6 @@
-package io.github.kraverekpl.TaskMate.models;
+package io.github.kraverekpl.TaskMate.repositories;
 
+import io.github.kraverekpl.TaskMate.models.Task;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

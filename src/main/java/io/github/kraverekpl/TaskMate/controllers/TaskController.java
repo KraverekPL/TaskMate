@@ -2,7 +2,7 @@ package io.github.kraverekpl.TaskMate.controllers;
 
 import io.github.kraverekpl.TaskMate.controllers.advice.IllegalExceptionProcessing;
 import io.github.kraverekpl.TaskMate.models.Task;
-import io.github.kraverekpl.TaskMate.models.TaskRepository;
+import io.github.kraverekpl.TaskMate.repositories.TaskRepository;
 import io.github.kraverekpl.TaskMate.services.TaskService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;

@@ -1,5 +1,7 @@
-package io.github.kraverekpl.TaskMate.models;
+package io.github.kraverekpl.TaskMate.repositories;
 
+import io.github.kraverekpl.TaskMate.models.Project;
+import io.github.kraverekpl.TaskMate.models.TaskGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

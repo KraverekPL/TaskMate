@@ -1,7 +1,7 @@
 package io.github.kraverekpl.TaskMate.reports;
 
 import io.github.kraverekpl.TaskMate.models.Task;
-import io.github.kraverekpl.TaskMate.models.TaskRepository;
+import io.github.kraverekpl.TaskMate.repositories.TaskRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

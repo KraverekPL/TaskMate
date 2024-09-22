@@ -3,7 +3,7 @@ package io.github.kraverekpl.TaskMate.controllers;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupReadModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupWriteModel;
 import io.github.kraverekpl.TaskMate.models.Task;
-import io.github.kraverekpl.TaskMate.models.TaskGroupRepository;
+import io.github.kraverekpl.TaskMate.repositories.TaskGroupRepository;
 import io.github.kraverekpl.TaskMate.services.TaskGroupService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/groups")

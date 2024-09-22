@@ -1,7 +1,7 @@
 package io.github.kraverekpl.TaskMate.controllers;
 
 import io.github.kraverekpl.TaskMate.models.Task;
-import io.github.kraverekpl.TaskMate.models.TaskRepository;
+import io.github.kraverekpl.TaskMate.repositories.TaskRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,11 +1,13 @@
 package io.github.kraverekpl.TaskMate.services;
 
 import io.github.kraverekpl.TaskMate.TaskConfigurationProperties;
-import io.github.kraverekpl.TaskMate.models.*;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupReadModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupTaskWriteModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupWriteModel;
 import io.github.kraverekpl.TaskMate.models.DTO.ProjectWriteModel;
+import io.github.kraverekpl.TaskMate.models.Project;
+import io.github.kraverekpl.TaskMate.repositories.ProjectRepository;
+import io.github.kraverekpl.TaskMate.repositories.TaskGroupRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

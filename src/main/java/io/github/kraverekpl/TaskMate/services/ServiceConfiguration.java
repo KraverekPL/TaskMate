@@ -1,9 +1,9 @@
 package io.github.kraverekpl.TaskMate.services;
 
 import io.github.kraverekpl.TaskMate.TaskConfigurationProperties;
-import io.github.kraverekpl.TaskMate.models.ProjectRepository;
-import io.github.kraverekpl.TaskMate.models.TaskGroupRepository;
-import io.github.kraverekpl.TaskMate.models.TaskRepository;
+import io.github.kraverekpl.TaskMate.repositories.ProjectRepository;
+import io.github.kraverekpl.TaskMate.repositories.TaskGroupRepository;
+import io.github.kraverekpl.TaskMate.repositories.TaskRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
