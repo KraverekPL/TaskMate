@@ -1,4 +1,4 @@
-package io.github.kraverekpl.TaskMate;
+package io.github.kraverekpl.TaskMate.configuration;
 
 import lombok.Getter;
 import lombok.Setter;

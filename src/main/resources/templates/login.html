@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://igoradamenko.com/awsm.css/v2/css/awsm.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
-    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
     <title>TaskMate</title>
 
 </head>
@@ -15,11 +15,12 @@
 <div th:if="${param.logout}">
     Zostałeś wylogowany.
 </div>
-<form th:action="@{/login}" method="post">
+<!--/*@thymesVar id="loginUserDto" type="io.github.kraverekpl.TaskMate.models.DTO.LoginUserDto"*/-->
+<form th:action="@{/login}" method="post" th:object="${loginUserDto}">
     <fieldset>
         <legend>Logowanie</legend>
-        <label> Login : <input type="text" name="username"/> </label>
-        <label> Hasło: <input type="password" name="password"/> </label>
+        <label> Login : <input type="text" th:field="*{email}"/> </label>
+        <label> Hasło: <input type="password" th:field="*{password}"/> </label>
         <button type="submit" value="Zaloguj">Zaloguj</button>
     </fieldset>
 </form>

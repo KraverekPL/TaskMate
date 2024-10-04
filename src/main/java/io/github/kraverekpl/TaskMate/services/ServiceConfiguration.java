@@ -1,6 +1,6 @@
 package io.github.kraverekpl.TaskMate.services;
 
-import io.github.kraverekpl.TaskMate.TaskConfigurationProperties;
+import io.github.kraverekpl.TaskMate.configuration.TaskConfigurationProperties;
 import io.github.kraverekpl.TaskMate.repositories.ProjectRepository;
 import io.github.kraverekpl.TaskMate.repositories.TaskGroupRepository;
 import io.github.kraverekpl.TaskMate.repositories.TaskRepository;

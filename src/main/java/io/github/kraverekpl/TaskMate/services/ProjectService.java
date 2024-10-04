@@ -1,6 +1,6 @@
 package io.github.kraverekpl.TaskMate.services;
 
-import io.github.kraverekpl.TaskMate.TaskConfigurationProperties;
+import io.github.kraverekpl.TaskMate.configuration.TaskConfigurationProperties;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupReadModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupTaskWriteModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupWriteModel;
