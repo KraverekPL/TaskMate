@@ -14,7 +14,7 @@ public class TaskGroupService {
     private TaskGroupRepository repository;
     private TaskRepository taskRepository;
 
-    TaskGroupService(TaskGroupRepository repository, TaskRepository taskRepository) {
+    public TaskGroupService(TaskGroupRepository repository, TaskRepository taskRepository) {
         this.repository = repository;
         this.taskRepository = taskRepository;
     }

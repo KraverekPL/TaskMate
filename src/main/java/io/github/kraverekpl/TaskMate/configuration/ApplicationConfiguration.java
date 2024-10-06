@@ -1,15 +1,43 @@
 package io.github.kraverekpl.TaskMate.configuration;
 
+import io.github.kraverekpl.TaskMate.repositories.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
+@AllArgsConstructor
 public class ApplicationConfiguration {
+    private final UserRepository userRepository;
 
-    public ExecutorService taskExecutor() {
-        return Executors.newFixedThreadPool(5);
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return username -> userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService());
+        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        return daoAuthenticationProvider;
     }
 }

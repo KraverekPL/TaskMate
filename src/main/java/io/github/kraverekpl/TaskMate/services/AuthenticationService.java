@@ -22,7 +22,6 @@ public class AuthenticationService {
         newUser.setFullName(user.getFullName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-
         return userRepository.save(newUser);
     }
 

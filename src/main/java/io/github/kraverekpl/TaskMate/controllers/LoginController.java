@@ -1,4 +1,4 @@
-package io.github.kraverekpl.TaskMate.controllers.web;
+package io.github.kraverekpl.TaskMate.controllers;
 
 import io.github.kraverekpl.TaskMate.models.DTO.LoginUserDto;
 import io.github.kraverekpl.TaskMate.models.LoginResponse;
@@ -29,6 +29,7 @@ public class LoginController {
         String token = jwtService.generateToken(authenticatedUser);
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setToken(token);
+        loginResponse.setExpiresIn(jwtService.getExpirationTime());
         return ResponseEntity.ok(loginResponse);
     }
 }
