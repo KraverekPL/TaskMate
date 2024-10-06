@@ -1,5 +1,6 @@
 package io.github.kraverekpl.TaskMate.controllers;
 
+import io.github.kraverekpl.TaskMate.controllers.advice.GlobalExceptionHandlerProcessing;
 import io.github.kraverekpl.TaskMate.models.DTO.LoginUserDto;
 import io.github.kraverekpl.TaskMate.models.LoginResponse;
 import io.github.kraverekpl.TaskMate.models.User;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @AllArgsConstructor
+@GlobalExceptionHandlerProcessing
 public class LoginController {
     private final JwtService jwtService;
     private final AuthenticationService authentication;

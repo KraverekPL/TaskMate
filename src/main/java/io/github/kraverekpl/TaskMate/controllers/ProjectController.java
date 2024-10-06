@@ -1,5 +1,6 @@
 package io.github.kraverekpl.TaskMate.controllers;
 
+import io.github.kraverekpl.TaskMate.controllers.advice.GlobalExceptionHandlerProcessing;
 import io.github.kraverekpl.TaskMate.models.DTO.ProjectWriteModel;
 import io.github.kraverekpl.TaskMate.models.Project;
 import io.github.kraverekpl.TaskMate.models.ProjectSteps;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/projects")
+@GlobalExceptionHandlerProcessing
 public class ProjectController {
     private final ProjectService projectService;
 

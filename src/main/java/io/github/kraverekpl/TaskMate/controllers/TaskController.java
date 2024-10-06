@@ -1,5 +1,6 @@
 package io.github.kraverekpl.TaskMate.controllers;
 
+import io.github.kraverekpl.TaskMate.controllers.advice.GlobalExceptionHandlerProcessing;
 import io.github.kraverekpl.TaskMate.controllers.advice.IllegalExceptionProcessing;
 import io.github.kraverekpl.TaskMate.models.Task;
 import io.github.kraverekpl.TaskMate.repositories.TaskRepository;
@@ -21,11 +22,11 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 @RequestMapping("/tasks")
 @IllegalExceptionProcessing
+@GlobalExceptionHandlerProcessing
 public class TaskController {
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskRepository taskRepository;
     private ApplicationEventPublisher applicationEventPublisher;
-
     private TaskService taskService;
 
     public TaskController(TaskRepository taskRepository, TaskService taskService, ApplicationEventPublisher applicationEventPublisher) {

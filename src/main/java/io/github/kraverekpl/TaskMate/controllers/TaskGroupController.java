@@ -1,5 +1,6 @@
 package io.github.kraverekpl.TaskMate.controllers;
 
+import io.github.kraverekpl.TaskMate.controllers.advice.GlobalExceptionHandlerProcessing;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupReadModel;
 import io.github.kraverekpl.TaskMate.models.DTO.GroupWriteModel;
 import io.github.kraverekpl.TaskMate.models.Task;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/groups")
+@GlobalExceptionHandlerProcessing
 public class TaskGroupController {
     private TaskGroupService taskGroupService;
     private TaskGroupRepository taskGroupRepository;
